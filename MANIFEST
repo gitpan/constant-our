@@ -4,6 +4,8 @@ MANIFEST
 README
 lib/constant/our.pm
 t/00-load.t
+t/10-use-import.t
+t/11-env.t
+t/boilerplate.t
 t/pod-coverage.t
 t/pod.t
-t/use-import.t

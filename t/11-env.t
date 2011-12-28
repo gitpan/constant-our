@@ -10,7 +10,6 @@ BEGIN
     $ENV{CONSTANT_OUR_DEBUG} = 1;
     $ENV{CONSTANT_OUR_TEST1} = 'test1';
 }
-use constant::our::ENV;
 
 package My::Test;
 use Test::More;
