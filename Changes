@@ -1,5 +1,10 @@
 Revision history for constant::our
 
+0.04 2011-12-29
+
+    - Rename MYMETA.yml to META.yml
+    - Rename MYMETA.json to META.json
+
 0.03 2011-12-29
 
     - Add MYMETA.yml MYMETA.json
