@@ -1,5 +1,11 @@
 Revision history for constant::our
 
+0.03 2011-12-29
+
+    - Add MYMETA.yml MYMETA.json
+    - Fixed pod
+    - Fixed README
+
 0.02 2011-12-28
 
     - Fixed MANIFEST to match contents of dist

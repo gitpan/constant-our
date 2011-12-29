@@ -1,6 +1,8 @@
 Build.PL
 Changes
 MANIFEST
+MYMETA.json
+MYMETA.yml
 README
 lib/constant/our.pm
 t/00-load.t

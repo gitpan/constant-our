@@ -1,0 +1,22 @@
+---
+abstract: 'Perl pragma to declare constants like our vars'
+author:
+  - 'Green <Evdokimov.Denis@gmail.com>'
+build_requires:
+  Exporter: 0
+  Test::More: 0
+  constant: 0
+dynamic_config: 0
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.112150'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: constant-our
+provides:
+  constant::our:
+    file: lib/constant/our.pm
+    version: 0.02
+resources:
+  license: http://dev.perl.org/licenses/
+version: 0.02
