@@ -25,7 +25,7 @@
    "provides" : {
       "constant::our" : {
          "file" : "lib/constant/our.pm",
-         "version" : "0.02"
+         "version" : "0.05"
       }
    },
    "release_status" : "stable",
@@ -34,5 +34,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.02"
+   "version" : "0.05"
 }

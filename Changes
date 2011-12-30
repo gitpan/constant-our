@@ -1,5 +1,11 @@
 Revision history for constant::our
 
+0.05 2011-12-30
+
+    - Fixed version in META
+    - Fixed pod
+    - Add test versions
+
 0.04 2011-12-29
 
     - Rename MYMETA.yml to META.yml

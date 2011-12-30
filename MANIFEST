@@ -11,3 +11,4 @@ t/11-env.t
 t/boilerplate.t
 t/pod-coverage.t
 t/pod.t
+t/version.t

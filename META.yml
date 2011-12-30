@@ -16,7 +16,7 @@ name: constant-our
 provides:
   constant::our:
     file: lib/constant/our.pm
-    version: 0.02
+    version: 0.05
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.02
+version: 0.05

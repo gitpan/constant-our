@@ -9,10 +9,10 @@ constant::our - Perl pragma to declare constants like our vars
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 use constant;
 use Exporter;
@@ -168,21 +168,21 @@ then optimize the expression further.
 
 You can inspect this behavior by yourself:
 
-    $ perl -MO=Deparse -e'use constant{DEBUG => 1}; warn "1"; if(DEBUG){warn "2"} warn 3;'
+    $ perl -MO=Deparse -e'use constant{DEBUG => 1}; warn "1"; if(DEBUG){warn "2"} warn "3";'
     use constant ({'DEBUG', 1});
     warn '1';
     do {
         warn '2'
     };
-    warn 3;
+    warn '3';
 
 All warns are here.
 
-    $ perl -MO=Deparse -e'use constant{DEBUG => 0}; warn "1"; if(DEBUG){warn "2"} warn 3;'
+    $ perl -MO=Deparse -e'use constant{DEBUG => 0}; warn "1"; if(DEBUG){warn "2"} warn "3";'
     use constant ({'DEBUG', 0});
     warn '1';
     '???';
-    warn 3;
+    warn '3';
 
 Notice the '???' instead of the second 'warn'.
 
