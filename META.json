@@ -3,7 +3,7 @@
    "author" : [
       "Green <Evdokimov.Denis@gmail.com>"
    ],
-   "dynamic_config" : 0,
+   "dynamic_config" : 1,
    "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112150",
    "license" : [
       "perl_5"
@@ -20,12 +20,11 @@
             "Test::More" : 0,
             "constant" : 0
          }
-      }
-   },
-   "provides" : {
-      "constant::our" : {
-         "file" : "lib/constant/our.pm",
-         "version" : "0.05"
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
       }
    },
    "release_status" : "stable",
@@ -34,5 +33,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.05"
+   "version" : "0.06"
 }

@@ -9,16 +9,19 @@ constant::our - Perl pragma to declare constants like our vars
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 use constant;
 use Exporter;
 
 our @EXPORT_OK;
 our %values;
+our %package_use;    # TODO tests
+our %package_set;
+our %package_set_implicitly;
 
 my $reserved_text = "Reserved for " . __PACKAGE__;
 our %reserved_constant = (
@@ -35,7 +38,7 @@ sub import
     {
         return;
     }
-
+    my ($caller_package) = caller;
     my $set_hash;
 
     if ( ref $args[0] )
@@ -46,13 +49,16 @@ sub import
             die __PACKAGE__ . " must call with one hash ref";
         }
         @_ = ( $class, keys %$set_hash );
+        push @{ $package_set{$caller_package} }, keys %$set_hash;
     }
     else
     {
+        push @{ $package_use{$caller_package} }, @args;
         foreach (@args)
         {
             if ( !exists $values{$_} )
             {
+                push @{ $package_set_implicitly{$caller_package} }, $_;
                 if ( exists $ENV{"CONSTANT_OUR_$_"} )
                 {
                     $set_hash->{$_} = $ENV{"CONSTANT_OUR_$_"};
@@ -233,6 +239,18 @@ A constant should be declared no more than one time.
 If you try to declare a constant twice (with different values), your program will die.
 
 Since use of undeclared constant implicitly declares it, you should declare your constants _before_ you start use them.
+
+=head1 DEBUGING
+
+    use constant::our {CONST => 123};
+    use ...
+    use ...
+    
+    use Data::Dumper;
+    $Data::Dumper::Sortkeys = 1;
+    print Dumper \%constant::our::package_use;
+    print Dumper \%constant::our::package_set;
+    print Dumper \%constant::our::package_set_implicitly;
 
 =head1 EXPORT
 

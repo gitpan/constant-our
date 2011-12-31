@@ -1,5 +1,10 @@
 Revision history for constant::our
 
+0.06 2011-12-31
+
+    - Insert in Build.PL auto_build option
+    - Add alfa version %package_use, %package_set and %package_set_implicitly
+
 0.05 2011-12-30
 
     - Fixed version in META
