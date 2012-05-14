@@ -27,7 +27,7 @@ sub changes_version
 {
     my $file = "Changes";
     my $text = read_file($file);
-    my ($version) = $text =~ /^$RegExp_match_version \d{4}-\d{2}-\d{2}$/m;
+    my ($version) = $text =~ /^$RegExp_match_version /m;
     is( $version, $real_version, $file );
 }
 ################################################################################

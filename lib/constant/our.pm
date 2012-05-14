@@ -9,10 +9,10 @@ constant::our - Perl pragma to declare constants like our vars
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 use constant;
 use Exporter;
@@ -95,6 +95,8 @@ sub _constant_our_set
     {
         if ( exists $values{$_} )
         {
+            my ( $package, $filename, $line ) = caller(1);
+            my $error_place = "$package [$filename:$line]";
             if ( defined $values{$_} && defined $set{$_} && $values{$_} eq $set{$_} )
             {
                 delete $set{$_};
@@ -105,8 +107,11 @@ sub _constant_our_set
             }
             else
             {
-                die "Flag [$_] set in 2 unmatched value: [$values{$_}] and [$set{$_}]";
+                my $c1 = defined $values{$_} ? $values{$_} : "undef";
+                my $c2 = defined $set{$_}    ? $set{$_}    : "undef";
+                die "Declare a constant [$_] in 2 unmatched value: [$c1] and [$c2] at $error_place";
             }
+            warn "Declare a constant [$_] again at $error_place. It's very BAD practice";
         }
         else
         {
@@ -233,12 +238,10 @@ With constant::our you can freely use "undeclared" constants in your condition s
     stderr:
     "DEBUG: ..."
 
-=head1 IMPORTANT
+=head1 ENV
 
-A constant should be declared no more than one time.
-If you try to declare a constant twice (with different values), your program will die.
-
-Since use of undeclared constant implicitly declares it, you should declare your constants _before_ you start use them.
+    $ export CONSTANT_OUR_DEBUG=1
+    $ perl -e'use constant::our qw(DEBUG); DEBUG && {warn "Running in debug mode"}'
 
 =head1 DEBUGING
 
@@ -251,6 +254,13 @@ Since use of undeclared constant implicitly declares it, you should declare your
     print Dumper \%constant::our::package_use;
     print Dumper \%constant::our::package_set;
     print Dumper \%constant::our::package_set_implicitly;
+
+=head1 IMPORTANT
+
+A constant should be declared no more than one time.
+If you try to declare a constant twice (with different values), your program will die.
+
+Since use of undeclared constant implicitly declares it, you should declare your constants _before_ you start use them.
 
 =head1 EXPORT
 

@@ -9,7 +9,8 @@ README
 t/00-load.t
 t/10-use-import.t
 t/11-env.t
-t/boilerplate.t
-t/pod-coverage.t
-t/pod.t
-t/version.t
+t/99-warn_and_die.t
+t_cpan_release/boilerplate.t
+t_cpan_release/pod-coverage.t
+t_cpan_release/pod.t
+t_cpan_release/version.t

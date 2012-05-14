@@ -1,12 +1,13 @@
+#!/usr/bin/perl
 use strict;
 use warnings;
 use Module::Build;
 
-my $auto_build;
-if ( @ARGV && $ARGV[0] eq 'auto_build' )
+my $build_cpan_release;
+if ( @ARGV && $ARGV[0] eq 'cpan' )
 {
     shift @ARGV;
-    $auto_build = 1;
+    $build_cpan_release = 1;
 }
 
 my $builder = Module::Build->new(
@@ -23,7 +24,7 @@ my $builder = Module::Build->new(
                                   create_makefile_pl => 'traditional',
 );
 
-if ( !$auto_build )
+if ( !$build_cpan_release )
 {
     $builder->create_build_script();
 }
@@ -31,8 +32,23 @@ else
 {
     $builder->dispatch('distmeta');
     $builder->dispatch('manifest');
+    print_delimiter();
+    print "Functional tests:\n";
     $builder->dispatch('test');
+    {
+        print_delimiter();
+        print "CPAN release tests:\n";
+        local $builder->{properties}->{test_files} = 't_cpan_release';
+        $builder->dispatch('test');
+    }
+    print_delimiter();
     $builder->dispatch('dist');
     $builder->dispatch('realclean');
     unlink qw(Makefile.PL MANIFEST MANIFEST.bak MANIFEST.SKIP.bak META.json META.yml);
 }
+################################################################################
+sub print_delimiter
+{
+    print "\n\n\n";
+}
+################################################################################
